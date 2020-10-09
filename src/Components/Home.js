@@ -30,8 +30,7 @@ let Home = ({ isLoggedIn, setIsLoggedIn }) => {
   const req = () => {
     axios
     .post(`https://localhost:44380/User/addRole/${roleId}`, {
-      Key: "Authorization",
-      Value: `Bearer ${authToken}`
+      headers: {"Authorization" : `Bearer ${authToken}`}
     })
     .then((res) => console.log(res.data));
   }
