@@ -21,16 +21,17 @@ let Home = ({ isLoggedIn, setIsLoggedIn }) => {
   const [manager, setManager] = useState("off");
   const [head, setHead] = useState("off");
   const [roleId, setRoleId] = useState(null);
-
+  const [removeRole, setRemoveRole] = useState(null)
   const { authToken } = useAuth();
 
   useEffect(() => {
  if(roleId === 1 || roleId === 2 || roleId === 3){
+   let authTokenAuth = localStorage.getItem("token");
   let cleanup = false;
   const req = () => {
     axios
     .post(`https://localhost:44380/User/addRole/${roleId}`, {
-      headers: {"Authorization" : `Bearer ${authToken}`}
+      Authorization : `Bearer ${authTokenAuth}`
     })
     .then((res) => console.log(res.data));
   }
@@ -41,10 +42,30 @@ let Home = ({ isLoggedIn, setIsLoggedIn }) => {
   },[roleId]);
 
 
+  useEffect(()=> {
+    if(removeRole === 1 || removeRole === 2 || removeRole === 3){
+      let authTokenAuthForRemove = localStorage.getItem("token");
+      let cleanupClone = false;
+      const remRole = () => {
+        axios
+        .post(`https://localhost:44380/User/removeRole/${removeRole}`, {
+          Authorization : `Bearer ${authTokenAuthForRemove}`
+        })
+        .then((res) => console.log(res.data));
+      }
+      remRole();
+    
+      return ()=> cleanupClone = true;
+    }
+  }, [removeRole])
+
   let toggle = (setter, getter, id) => {
     setter(getter === "off" ? "on" : "off");
     setRoleId(id);
-    console.log(roleId);
+
+    if(getter === "on"){
+      setRemoveRole(id);
+    }
   };
 
   let logOut = () => {

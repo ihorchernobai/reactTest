@@ -23,7 +23,8 @@ useEffect(()=> {
     .then((result) => {
       if (result.status === 200) {
         setIsLoggedIn(true);
-        setToken(result.data);
+        localStorage.setItem("token", JSON.stringify(result.data.token));
+        // setToken(result.data);
         // setAuthToken(result.data);
       } 
     })
