@@ -14,6 +14,7 @@ function Login({ isLoggedIn, setIsLoggedIn }) {
 
 useEffect(()=> {
   let mounted = true;
+
   if(sendRequest){
     axios
     .post("https://localhost:44380/User/Login", {

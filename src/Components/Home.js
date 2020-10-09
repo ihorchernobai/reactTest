@@ -28,10 +28,14 @@ let Home = ({ isLoggedIn, setIsLoggedIn }) => {
  if(roleId === 1 || roleId === 2 || roleId === 3){
    let authTokenAuth = localStorage.getItem("token");
   let cleanup = false;
+
+  let data = roleId;
   const req = () => {
     axios
-    .post(`https://localhost:44380/User/addRole/${roleId}`, {
-      Authorization : `Bearer ${authTokenAuth}`
+    .post(`https://localhost:44380/User/addRole/${roleId}`, data, {
+      headers: {
+        "Authorization" : `Bearer ${authTokenAuth}`
+      }
     })
     .then((res) => console.log(res.data));
   }
