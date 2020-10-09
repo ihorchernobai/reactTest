@@ -14,6 +14,7 @@ function Login({ isLoggedIn, setIsLoggedIn }) {
 
 useEffect(()=> {
   let mounted = true;
+  setIsLoggedIn(true);
 
   if(sendRequest){
     axios
