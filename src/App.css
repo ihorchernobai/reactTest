@@ -1,38 +1,142 @@
+body {
+  margin: 0;
+}
 .App {
   text-align: center;
+  margin: 0 auto;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navbar {
+  background: antiquewhite;
+  padding: 15px;
+  border-bottom: 1px solid goldenrod;
+  border-left: 1px solid goldenrod;
+  border-right: 1px solid goldenrod;
+}
+.navbar .nav {
+  width: 100%;
+  max-width: 200px;
+  text-align: left;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+nav ul {
+  padding: 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+ul li {
+  display: inline-block;
+  margin: 5px 5px;
+}
+
+nav ul {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+
+input {
+  background: transparent;
+  border: 3px solid lightgray;
+  border-radius: 10px;
+  padding: 10px;
+  color: grey;
+  font-size: 1em;
+  margin: 5px 0;
+}
+
+button {
+  background: transparent;
+  border: 3px solid lightgray;
+  border-radius: 10px;
+  padding: 10px;
+  color: grey;
+  font-size: 1em;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.5s ease-in-out;
+}
+button:hover,
+a:hover {
+  background: gray;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+a {
+  text-decoration: none;
+  background: transparent;
+  border: 3px solid lightgray;
+  border-radius: 10px;
+  padding: 10px;
+  color: grey;
+  font-size: 1em;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.5s ease-in-out;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+button:hover,
+a:hover {
+  background: gray;
+  color: white;
+}
+
+/* content */
+.content {
+  padding: 15px;
+  max-width: 1170px;
+  margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.items {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.on {
+  display: flex;
+  flex-flow: column wrap;
+  padding-top: 15px;
+}
+
+.off {
+  display: none;
+  padding-top: 15px;
+}
+
+.item {
+  border: 2px solid lightsteelblue;
+  width: 100%;
+  max-width: 200px;
+  padding: 0px 10px;
+  margin: 10px;
+}
+
+/* login page */
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.login_content {
+  width: 100%;
+  max-width: 320px;
+  min-height: 150px;
+  padding: 10px;
+  border: 2px solid lightgrey;
+}
+
+.login form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  height: auto;
+  justify-content: space-between;
 }

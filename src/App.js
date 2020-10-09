@@ -1,25 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect
+} from "react-router-dom";
+
+//Components
+
+import Home from "./Components/Home";
+import Login from "./Components/Login";
+
+import { AuthContext } from "./context/auth";
 
 function App() {
+  const existingTokens = JSON.parse(localStorage.getItem("token"));
+  const [authToken, setAuthToken] = useState(existingTokens);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const setToken = (data) => {
+    localStorage.setItem("token", JSON.stringify(data));
+    setAuthToken(data);
+  };
+  // if (!isLoggedIn) {
+  //   return <Redirect to="/login" />;
+  // }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthContext.Provider value={{ authToken, setAuthToken: setToken }}>
+      <Router>
+        <div>
+          <Route exact path="/">
+            <Home isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+          </Route>
+          <Route path="/login">
+            <Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+          </Route>
+        </div>
+      </Router>
+    </AuthContext.Provider>
   );
 }
 
