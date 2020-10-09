@@ -11,7 +11,7 @@ function Login({ isLoggedIn, setIsLoggedIn }) {
   const { setAuthToken, setToken } = useAuth();
 
   const [sendRequest, setSendRequest] = useState(false);
-  
+
 useEffect(()=> {
   let mounted = true;
   if(sendRequest){

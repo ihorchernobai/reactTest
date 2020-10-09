@@ -22,7 +22,7 @@ let Home = ({ isLoggedIn, setIsLoggedIn }) => {
   const [head, setHead] = useState("off");
   const [roleId, setRoleId] = useState(null);
 
-  const { authTokens } = useAuth();
+  const { authToken } = useAuth();
 
   useEffect(() => {
  if(roleId === 1 || roleId === 2 || roleId === 3){
@@ -31,7 +31,7 @@ let Home = ({ isLoggedIn, setIsLoggedIn }) => {
     axios
     .post(`https://localhost:44380/User/addRole/${roleId}`, {
       Key: "Authorization",
-      Value: `Bearer ${authTokens}`
+      Value: `Bearer ${authToken}`
     })
     .then((res) => console.log(res.data));
   }
