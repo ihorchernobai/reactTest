@@ -26,7 +26,7 @@ let Home = ({ isLoggedIn, setIsLoggedIn }) => {
 
   useEffect(() => {
  if(roleId === 1 || roleId === 2 || roleId === 3){
-   let authTokenAuth = localStorage.getItem("token");
+   let authTokenAuth = JSON.parse(localStorage.getItem("token"));
   let cleanup = false;
 
   let data = roleId;
@@ -48,9 +48,10 @@ let Home = ({ isLoggedIn, setIsLoggedIn }) => {
 
   useEffect(()=> {
     if(removeRole === 1 || removeRole === 2 || removeRole === 3){
-      let authTokenAuthForRemove = localStorage.getItem("token");
+      let authTokenAuthForRemove = JSON.parse(localStorage.getItem("token"));
       let cleanupClone = false;
       let data = removeRole;
+
       const remRole = () => {
         axios
         .post(`https://localhost:44380/User/removeRole/${removeRole}`,  data, {
